@@ -6,6 +6,28 @@ The macropad is recognized by the host computer as a standard USB HID device and
 
 ---
 
+## Project Images
+
+![Macropad V2 WIP render](<Macropad V1/Macropad V2 (WIP) v11.png>)
+*Macropad V2 work-in-progress render.*
+
+![Macropad V5 V8 with rotary encoders](<Macropad V3/Macropad V5 v8 with rotary encoders.png>)
+*Macropad V5 V8 case design with rotary encoders.*
+
+![Macropad wires and switches dry fit](<Macropad V3/Macropad wires and switches dry fit.jpg>)
+*Wires and switches dry fit before final assembly.*
+
+![Macropad heat press inserts pro micro and inside visible](<Macropad V3/Macropad V5 v8 heat press inserts and pro micro and inside visible .png>)
+*Heat press inserts, Pro Micro, and internal layout visible.*
+
+![Macropad insides after adding encoders](<Macropad V3/Macropad insides after adding encoders.jpg>)
+*Internal wiring after adding the rotary encoders.*
+
+![Macropad heat press jig](<Macropad V3/Macropad Heat press Jig.jpg>)
+*Heat press jig used during assembly.*
+
+---
+
 ## Features
 
 * 8 programmable macro keys
