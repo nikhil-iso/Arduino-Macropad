@@ -1,70 +1,104 @@
-# Arduino Macropad v2
+# Arduino-Based Macropad
 
-A custom USB macropad built around the Arduino Pro Micro (ATmega32U4). The project features eight programmable keys, dual rotary encoders, media controls, and a compact 3D-printed enclosure designed in Fusion 360.
+Revisited 8-key Arduino Pro Micro macropad with two rotary encoders, Cherry MX Blue switches, cleaner firmware, and a smaller screw-fastened 3D printed enclosure.
 
-The macropad is recognized by the host computer as a standard USB HID device and can be used for productivity shortcuts, media control, streaming, CAD workflows, programming, and general desktop use.
+I started this project in Grade 11 during COVID. At the time, I wanted to get my foot in the door with accessible engineering projects, and I remember hearing about groups that helped people with disabilities enjoy gaming by building custom input devices. That stuck with me. This macropad became my first real engineering project, and it helped point me toward human-centered hardware, accessible design, and eventually prosthesis development.
+
+The original version was intentionally simple: an 8-key macropad built around an Arduino Pro Micro and a 3D printed friction-fit case. It was my first real experience with soldering, 3D printing, and writing Arduino code for a device I could actually use. Four years later, I revisited the same project with more experience and a better understanding of what I would change if I built it again.
 
 ---
 
 ## Project Images
 
-![Macropad V2 WIP render](<Macropad V1/Macropad V2 (WIP) v11.png>)
-*Macropad V2 work-in-progress render.*
+![Original macropad enclosure CAD render](<Macropad V1/Macropad V2 (WIP) v11.png>)
+*Original 8-key enclosure CAD render.*
 
-![Macropad V5 V8 with rotary encoders](<Macropad V3/Macropad V5 v8 with rotary encoders.png>)
-*Macropad V5 V8 case design with rotary encoders.*
+![Updated macropad layout with rotary encoders and Cherry MX Blue switches](<Macropad V3/Macropad V5 v8 with rotary encoders.png>)
+*Updated macropad layout with two rotary encoders and Cherry MX Blue switches.*
 
-![Macropad wires and switches dry fit](<Macropad V3/Macropad wires and switches dry fit.jpg>)
-*Wires and switches dry fit before final assembly.*
+![Macropad internal CAD render with Pro Micro and heat-set inserts](<Macropad V3/Macropad V5 v8 heat press inserts and pro micro and inside visible .png>)
+*Internal layout with the Pro Micro and heat-set inserts visible.*
 
-![Macropad heat press inserts pro micro and inside visible](<Macropad V3/Macropad V5 v8 heat press inserts and pro micro and inside visible .png>)
-*Heat press inserts, Pro Micro, and internal layout visible.*
+![Temporary drill press jig used to install heat-set inserts](<Macropad V3/Macropad Heat press Jig.jpg>)
+*Temporary drill press jig for installing heat-set inserts square and flush.*
 
-![Macropad insides after adding encoders](<Macropad V3/Macropad insides after adding encoders.jpg>)
-*Internal wiring after adding the rotary encoders.*
+![Macropad switches and wiring dry-fit inside the enclosure](<Macropad V3/Macropad wires and switches dry fit.jpg>)
+*Switches and wiring dry-fit before final assembly.*
 
-![Macropad heat press jig](<Macropad V3/Macropad Heat press Jig.jpg>)
-*Heat press jig used during assembly.*
+![Macropad interior after installing rotary encoders and wiring](<Macropad V3/Macropad insides after adding encoders.jpg>)
+*Interior after adding the rotary encoders and wiring.*
+
+---
+
+## Design Goals
+
+This revision keeps the spirit of the original project while improving the parts that felt unfinished after real use:
+
+* Preserve the simple 8-key USB HID macropad layout
+* Add rotary encoders for continuous input, not only on/off key presses
+* Improve the feel of the board with Cherry MX Blue switches
+* Reduce the enclosure size by roughly 30%
+* Replace the friction-fit case with a serviceable screw-fastened assembly
+* Clean up the firmware so future keymap and encoder changes are easier
+
+The rotary encoders were an important addition because they let the board act less like a small keyboard and more like a flexible input device. A switch is basically pressed or released, but an encoder can be turned, clicked, and mapped to volume, brightness, scrolling, timeline control, CAD navigation, or other workflows.
+
+---
+
+## Mechanical Revision
+
+The older enclosure worked, but it had unused volume and the friction-fit closure wore down after repeated opening. The new housing is smaller, more intentional, and fastens with screws into heat-set inserts installed in the top half of the case.
+
+To install the inserts repeatably, I made a temporary press using a soldering iron with a heat-set insert tip mounted in a drill press. The setup kept each insert aligned at 90 degrees to the printed part and gave controlled vertical travel, so the inserts could be set flush without tilting or melting the surrounding plastic.
+
+Before final soldering and closure, I dry-fit the switches, encoder bodies, wiring, screw bosses, and Arduino Pro Micro inside the smaller enclosure. That check caught clearance and routing issues while the case was still easy to adjust.
 
 ---
 
 ## Features
 
 * 8 programmable macro keys
-* Dual rotary encoders
-* Dedicated media controls
-* USB HID keyboard functionality
-* 3D printed enclosure
-* Open source hardware and firmware
-* Uses common through-hole mechanical components
-* No external software required on the host computer
+* 2 EC11 rotary encoders
+* Cherry MX Blue mechanical switches
+* Arduino Pro Micro with ATmega32U4
+* Standard USB HID keyboard behavior
+* Media key support through the HID-Project library
+* Compact 3D printed enclosure designed in Fusion 360
+* Screw-fastened case with heat-set inserts
+* No external host software required
 
 ---
 
 ## Current Keymap
 
-| Key   | Function                             |
-| ----- | ------------------------------------ |
-| Key 1 | F13                                  |
-| Key 2 | F14                                  |
-| Key 3 | Windows Screenshot (Win + Shift + S) |
-| Key 4 | F16                                  |
-| Key 5 | Previous Track                       |
-| Key 6 | Next Track                           |
-| Key 7 | F19                                  |
-| Key 8 | F20                                  |
+The V3 firmware currently sends F13 through F20 on the eight keys. These are useful macro keys because most programs do not already bind them by default.
+
+| Key   | Function |
+| ----- | -------- |
+| Key 1 | F13      |
+| Key 2 | F14      |
+| Key 3 | F15      |
+| Key 4 | F16      |
+| Key 5 | F17      |
+| Key 6 | F18      |
+| Key 7 | F19      |
+| Key 8 | F20      |
 
 ### Encoder A
 
-| Input                    | Function     |
-| ------------------------ | ------------ |
-| Rotate Clockwise         | Volume Up    |
-| Rotate Counter-Clockwise | Volume Down  |
-| Press Button             | Play / Pause |
+| Input                    | Function    |
+| ------------------------ | ----------- |
+| Rotate clockwise         | Volume up   |
+| Rotate counter-clockwise | Volume down |
+| Press button             | Reserved    |
 
 ### Encoder B
 
-Currently reserved for future functionality.
+| Input                    | Function |
+| ------------------------ | -------- |
+| Rotate clockwise         | Reserved |
+| Rotate counter-clockwise | Reserved |
+| Press button             | Reserved |
 
 ---
 
@@ -72,16 +106,18 @@ Currently reserved for future functionality.
 
 ### Electronics
 
-* Arduino Pro Micro (ATmega32U4)
-* 8 × Mechanical keyboard switches
-* 2 × EC11 rotary encoders with push buttons
+* Arduino Pro Micro, ATmega32U4
+* 8 x Cherry MX Blue mechanical switches
+* 2 x EC11 rotary encoders with push buttons
 * USB-C breakout board
 * Wiring and connectors
 
-### CAD
+### CAD and Fabrication
 
-* Designed in Fusion 360
-* Fully 3D printable enclosure
+* Fusion 360 enclosure design
+* 3D printed top and bottom case
+* Heat-set threaded inserts
+* Screw-fastened enclosure
 * STEP export included for modification in other CAD software
 
 ---
@@ -89,18 +125,27 @@ Currently reserved for future functionality.
 ## Repository Contents
 
 ```text
-Macropad_Code.ino          Main firmware
-ArduinoMacropad Schem.pdf Wiring schematic
-Macropad V2 (WIP).f3z     Fusion 360 source file
-Macropad V2 (WIP).step    STEP export
-Macropad V2 (WIP) v11.png Render image
+Macropad V1/
+  ArduinoMacropad Schem.pdf
+  Macropad_Code.ino
+  Macropad V2 (WIP).f3z
+  Macropad V2 (WIP).step
+  Macropad V2 (WIP) v11.png
+
+Macropad V3/
+  MacropadV3.ino
+  Macropad V5 v8 with rotary encoders.png
+  Macropad V5 v8 heat press inserts and pro micro and inside visible .png
+  Macropad wires and switches dry fit.jpg
+  Macropad insides after adding encoders.jpg
+  Macropad Heat press Jig.jpg
 ```
 
 ---
 
 ## Pin Mapping
 
-The firmware uses the Arduino internal pull-up resistors. All switches and buttons connect between the assigned pin and GND.
+The firmware uses the Arduino internal pull-up resistors. Switches and buttons connect between the assigned pin and GND.
 
 ### Key Switches
 
@@ -121,7 +166,7 @@ The firmware uses the Arduino internal pull-up resistors. All switches and butto
 | ------ | --- |
 | Left   | D16 |
 | Right  | D10 |
-| Button | A1  |
+| Button | A0  |
 
 ### Encoder B
 
@@ -129,80 +174,52 @@ The firmware uses the Arduino internal pull-up resistors. All switches and butto
 | ------ | --- |
 | Left   | D15 |
 | Right  | D14 |
-| Button | A0  |
+| Button | A1  |
 
 ---
 
-## Software
+## Firmware
 
-### Required Libraries
+The board acts as a standard USB keyboard, so it works without custom software on the host computer. The current V3 firmware is organized around separate update functions for keys, encoder rotation, and encoder push buttons.
 
-Install the following libraries through the Arduino Library Manager:
+Required Arduino libraries:
 
 * HID-Project by NicoHood
 * RotaryEncoder by Matthias Hertel
 
-These libraries provide USB media key support and reliable rotary encoder handling.
+Common changes can be made in `Macropad V3/MacropadV3.ino`:
+
+* Key assignments: `keyCodes`
+* Encoder A rotation behavior: `updateEncoderA()`
+* Encoder B rotation behavior: `updateEncoderB()`
+* Encoder push-button behavior: `updateEncoderButtons()`
 
 ---
 
 ## Building and Uploading
 
 1. Install the Arduino IDE.
-2. Install the required libraries.
-3. Connect the Pro Micro via USB.
-4. Open `Macropad_Code.ino`.
-5. Select:
-
-   * Board: Arduino Leonardo or SparkFun Pro Micro (ATmega32U4)
-   * Correct COM port
-6. Upload the sketch.
-
----
-
-## Customization
-
-The firmware is designed to be easy to modify.
-
-Common customizations include:
-
-* Application shortcuts
-* CAD hotkeys
-* Media controls
-* OBS controls
-* Discord shortcuts
-* Browser controls
-* Game macros
-
-Key assignments can be modified in the `doKeyAction()` function.
-
-Encoder actions can be modified in:
-
-```cpp
-updateEncoderA()
-updateEncoderB()
-```
-
-Button actions can be modified in:
-
-```cpp
-updateEncoderAButton()
-updateEncoderBButton()
-```
+2. Install the required libraries through the Arduino Library Manager.
+3. Connect the Arduino Pro Micro over USB.
+4. Open `Macropad V3/MacropadV3.ino`.
+5. Select an ATmega32U4-compatible board, such as Arduino Leonardo or SparkFun Pro Micro.
+6. Select the correct COM port.
+7. Upload the sketch.
 
 ---
 
 ## Future Improvements
 
-Planned upgrades include:
+Possible next steps:
 
-* Fully custom PCB
+* Custom PCB
 * Hot-swappable switches
-* RGB lighting
-* USB-C native integration
-* Wireless Bluetooth version
-* Additional encoder functionality
-* Configurable keymaps through software
+* Native USB-C integration
+* Additional encoder mappings
+* Configurable keymaps
 * OLED display support
+* Exploration of more accessibility-focused input layouts
 
 ---
+
+Arduino Pro Micro - C++ - USB HID - Cherry MX Blue - Rotary Encoders - Fusion 360 - 3D Printing
