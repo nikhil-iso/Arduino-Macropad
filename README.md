@@ -170,14 +170,6 @@ updateEncoderBButton()
 
 ---
 
-## Project Images
-
-Render:
-
-![Macropad Render](Macropad%20V2%20\(WIP\)%20v11.png)
-
----
-
 ## Future Improvements
 
 Planned upgrades include:
@@ -192,7 +184,3 @@ Planned upgrades include:
 * OLED display support
 
 ---
-
-## License
-
-This project is open source and intended for personal, educational, and hobby use. Feel free to modify the hardware and firmware to suit your own workflow.
